@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   List countriesData;
   var url = Uri.parse("https://corona.lmao.ninja/v3/covid-19/all");
   var countriesUrl =
-      Uri.parse("https://corona.lmao.ninja/v3/covid-19/countries");
+      Uri.parse("https://corona.lmao.ninja/v3/covid-19/countries?sort=cases");
 
   fetchWorldWideDaata() async {
     http.Response response = await http.get(url);
@@ -47,7 +47,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        actions: [
+          IconButton(icon:Icon(Theme.of(context).brightness == Brightness.light ? Icons.lightbulb_outline : Icons.highlight),
+          onPressed:(){
+            print("dsadas");
+          })
+        ],
+        centerTitle: false,
         title: Text('COVID-19 TRACKER'),
       ),
       body: SingleChildScrollView(
@@ -102,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             worldData == null
-                ? CircularProgressIndicator()
+                ? Center(child: CircularProgressIndicator())
                 : Grid(
                     worldData: worldData,
                   ),
@@ -115,7 +121,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             countriesData == null
-                ? CircularProgressIndicator()
+                ? Center(child: CircularProgressIndicator())
                 : MostAffectedCountries(countriesData: countriesData),
             InfoSection(),
             SizedBox(height: 50),

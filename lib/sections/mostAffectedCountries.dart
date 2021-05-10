@@ -25,6 +25,7 @@ class MostAffectedCountries extends StatelessWidget {
                     width: 30 ),
                   ),
                   Text(countriesData[index]['country']),
+                  Text(' '),
                   Text(countriesData[index]['deaths'].toString()),
                 ],
               ),

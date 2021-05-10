@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:covid19/pages/Search.dart';
 class countriesList extends StatefulWidget {
   @override
   _countriesListState createState() => _countriesListState();
@@ -29,6 +29,12 @@ class _countriesListState extends State<countriesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(icon:Icon(Icons.search),
+          onPressed: (){
+            showSearch(context: context, delegate: Search(countriesData));
+          },)
+        ],
         title: Text('Countries List'),
       ),
       body: countriesData == null
